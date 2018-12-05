@@ -25,6 +25,7 @@ import com.miracle.sport.onetwo.view.MImgView;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class HomeListAdapter extends RecyclerViewAdapter<Football> {
@@ -65,13 +66,15 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
 
     public void resetParallaxImgView(Rect rc){
         this.rc = rc;
-        for(Map.Entry<Integer,WeakReference<MImgView>> e : allImgView.entrySet()){
+        Iterator<Map.Entry<Integer, WeakReference<MImgView>>> it = allImgView.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<Integer,WeakReference<MImgView>> e = it.next();
             WeakReference<MImgView> pr = e.getValue();
             MImgView m = pr.get();
             if(m == null){
                 pr.clear();
-//                    Log.d("TAG", "onScrolled:  remove()");
-                allImgView.remove(e.getKey());
+                Log.d("TAG", "onScrolled:  remove()");
+                it.remove();
                 continue;
             }
             m.updateProgress(rc);
@@ -80,17 +83,19 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
 
     @Override
     protected void convert(BaseViewHolder helper, Football item) {
-        ImageView iv1_1 =  helper.getView(R.id.iv1_1);
+        MImgView iv1_1 =  helper.getView(R.id.iv1_1);
         MImgView iv1_2 =  helper.getView(R.id.iv1_2);
         MImgView iv2_2 =  helper.getView(R.id.iv2_2);
         MImgView iv1 =  helper.getView(R.id.iv1);
         MImgView iv2 =  helper.getView(R.id.iv2);
         MImgView iv3 =  helper.getView(R.id.iv3);
+        WeakReference wiv1_1 = addToPR(iv1_1);
         WeakReference wiv1_2 = addToPR(iv1_2);
         WeakReference wiv2_2 = addToPR(iv2_2);
         WeakReference wiv1 =  addToPR(iv1);
         WeakReference wiv2 =  addToPR(iv2);
         WeakReference wiv3 =  addToPR(iv3);
+        iv1_1.setEnableOffset(false);
         iv1_2.setEnableOffset(false);
         iv2_2.setEnableOffset(false);
         iv1.setEnableOffset(false);
@@ -120,6 +125,7 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
                 GlideApp.with(context).load(thumb)
                         .placeholder(R.mipmap.defaule_img)
                         .error(R.mipmap.empty)
+                        .listener(new MRequestListener(wiv1_2))
                         .into(iv1_2);
                 helper.setGone(R.id.iv1_1, true);
             }
@@ -139,6 +145,7 @@ public class HomeListAdapter extends RecyclerViewAdapter<Football> {
                 GlideApp.with(context).load(urlLoad)
                         .placeholder(R.mipmap.defaule_img)
                         .error(R.mipmap.empty)
+                        .listener(new MRequestListener(wiv1_1))
                         .into(iv1_1);
                 helper.setGone(R.id.iv1_1, true);
                 helper.setGone(R.id.iv1_2, false);

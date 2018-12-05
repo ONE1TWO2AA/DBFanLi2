@@ -46,7 +46,7 @@ public abstract class BaseFragment<B extends ViewDataBinding> extends Fragment i
             case NODATA:
                 mBaseBinding.placeHolder.setEmpty();
                 mBaseBinding.placeHolder.setVisibility(View.VISIBLE);
-                mBaseBinding.baseFragContainer.setVisibility(View.VISIBLE);
+                mBaseBinding.baseFragContainer.setVisibility(View.GONE);
                 break;
             case ERR:
                 mBaseBinding.placeHolder.setError();

@@ -6,18 +6,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             >
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/detail_one_key_btn"
+                android:visibility="gone"
+                android:text="一键兑换"
+                android:layout_margin="4dp"
+                style="@style/btn_one_key_force"
+                />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
+                android:layout_alignParentTop="true"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_above="@id/detail_one_key_btn"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

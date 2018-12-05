@@ -16,6 +16,7 @@ import com.miracle.base.network.ZResponse;
 import com.miracle.databinding.FragmentCategoryHomeBinding;
 import com.miracle.sport.SportService;
 import com.miracle.sport.home.activity.SimpleWebCommentActivity;
+import com.miracle.sport.home.adapter.FBFLListAdapter;
 import com.miracle.sport.home.adapter.HomeListAdapter;
 import com.miracle.sport.home.bean.Football;
 import com.miracle.sport.home.bean.HomeBean;
@@ -107,7 +108,7 @@ public class ChannelHomeFristFragment extends BaseFragment<FragmentCategoryHomeB
 //                ZClient.getService(SportService.class).getNewsList(reqKey, page, limit).enqueue(callBack);
 //            }
 //        };
-        callBack=new ZPageLoadCallback<ZResponse<List<Football>>>(mAdapter,binding.recyclerView) {
+        callBack = new ZPageLoadCallback<ZResponse<List<Football>>>(mAdapter,binding.recyclerView) {
             @Override
             public void requestAction(int page, int pageSize) {
                 callBack.setCachKey("ChanneHomeFragment" + reqKey+page);

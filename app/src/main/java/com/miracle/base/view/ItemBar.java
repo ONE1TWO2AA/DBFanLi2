@@ -84,6 +84,7 @@ public class ItemBar extends LinearLayout {
                         lp.height = LayoutParams.WRAP_CONTENT;
                         lp.setMargins(8,8,8,8);
                         binding.tvText.setLayoutParams(lp);
+                        binding.tvIconLeft.setPadding(0,0,0,0);
                     }
                     break;
                 case R.styleable.ItemBar_ItemBar_Left_TextSize:

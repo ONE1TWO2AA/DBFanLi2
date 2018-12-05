@@ -7,6 +7,18 @@
     android:layout_height="wrap_content"
     tools:showIn="@layout/f4_ddz2">
 
+    <com.miracle.base.view.ItemBar
+        android:id="@+id/ibmyyhj"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        app:ItemBar_Left_Icon="@string/icon_main_youhuijuan"
+        app:ItemBar_Left_TextColor="@color/main_color"
+        app:ItemBar_Left_TextSize="24sp"
+        android:layout_marginTop="8dp"
+        app:ItemBar_Text="我的优惠券"
+        app:ItemBar_Orientation="vertical"
+        app:ItemBar_TextSize="16sp" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -72,4 +84,6 @@
         app:ItemBar_Left_TextSize="24sp"
         app:ItemBar_Text="关于我们"
         app:ItemBar_TextSize="16sp" />
+
+
 </LinearLayout>

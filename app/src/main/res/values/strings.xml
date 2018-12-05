@@ -76,6 +76,10 @@
     <string name="icon_main_faxian">&#xe623;</string>
     <string name="icon_main_liaotianshi">&#xe659;</string>
 
+    <!-- 返利 -->
+    <string name="icon_main_right">&#xe682;</string>
+    <string name="icon_main_youhuijuan">&#xe683;</string>
+
 
     <!--登录 注册-->
     <string name="login_register">正在注册    |    登录</string>

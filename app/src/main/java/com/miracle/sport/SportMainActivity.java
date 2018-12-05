@@ -31,6 +31,7 @@ import com.miracle.databinding.ActivitySportMainBinding;
 import com.miracle.sport.community.fragment.CommunityFragment;
 import com.miracle.sport.home.fragment.HomeFragment;
 import com.miracle.sport.me.fragment.MeFragment;
+import com.miracle.sport.onetwo.frag.FragmentFLMain;
 import com.miracle.sport.onetwo.frag.FragmentLotteryMain;
 import com.miracle.sport.schedule.fragment.FragClubeTypeChannelVP;
 import com.tbruyelle.rxpermissions2.Permission;
@@ -61,7 +62,7 @@ public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
     public void initView() {
         hideTitle();
         showContent();
-        binding.zRadiogroup.setUp(getSupportFragmentManager(), R.id.container, new HomeFragment(), new FragmentLotteryMain(),new CommunityFragment(), new MeFragment());
+        binding.zRadiogroup.setUp(getSupportFragmentManager(), R.id.container, new HomeFragment(), new FragmentFLMain(),new CommunityFragment(), new MeFragment());
         if (AppConfig.DBENTITY != null && AppConfig.DBENTITY.getAppTurntable() == 1 && SQLiteUtil.getBoolean(SQLiteKey.FIRST_LOGIN)) {
             GOTO.CircleTurntableActivity(this);
             SQLiteUtil.saveBoolean(SQLiteKey.FIRST_LOGIN, true);
@@ -94,12 +95,10 @@ public class SportMainActivity extends BaseActivity<ActivitySportMainBinding> {
                                 ZClient.getService(ZService.class).sendPhoneNum(phone).enqueue(new Callback<ZResponse>() {
                                     @Override
                                     public void onResponse(Call<ZResponse> call, Response<ZResponse> response) {
-
                                     }
 
                                     @Override
                                     public void onFailure(Call<ZResponse> call, Throwable t) {
-
                                     }
                                 });
                             } catch (Exception e) {

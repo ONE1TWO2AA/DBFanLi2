@@ -3,6 +3,8 @@ package com.miracle.sport.onetwo.frag;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
+import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DividerItemDecoration;
@@ -11,22 +13,31 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miracle.R;
+import com.miracle.base.Constant;
+import com.miracle.base.bean.QQWechatBean;
 import com.miracle.base.network.RequestUtil;
+import com.miracle.base.network.ZCallback;
 import com.miracle.base.network.ZClient;
 import com.miracle.base.network.ZPageLoadCallback;
 import com.miracle.base.network.ZResponse;
+import com.miracle.base.network.ZService;
 import com.miracle.base.util.ContextHolder;
+import com.miracle.base.util.ToastUtil;
 import com.miracle.databinding.FragmentCategoryDetailBinding;
+import com.miracle.michael.common.activity.CustomerServiceActivity;
 import com.miracle.sport.SportService;
 import com.miracle.sport.home.activity.SimpleWebCommentActivity;
-import com.miracle.sport.home.adapter.HomeListAdapter;
-import com.miracle.sport.home.bean.FishListItem;
+import com.miracle.sport.home.adapter.FBFLListAdapter;
+import com.miracle.sport.home.adapter.FLListAdapter;
+import com.miracle.sport.home.bean.FLItem;
 import com.miracle.sport.home.bean.Football;
+import com.miracle.sport.onetwo.act.OneFragActivity;
 import com.miracle.sport.onetwo.inter.CallBackListener;
 import com.youth.banner.loader.ImageLoader;
 
@@ -41,24 +52,26 @@ import retrofit2.Call;
  * 列表 1
  */
 
-public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding> implements BaseQuickAdapter.OnItemClickListener {
+public class FragFLItemList extends HandleFragment<FragmentCategoryDetailBinding> implements BaseQuickAdapter.OnItemClickListener {
 //    public CpListItemAdapter mAdapter;
     public static final int MSG_WHAT_KEY_REQKEY = 1;
+    public static final String ARG_KEY_ISMYCOLLECT = "ARG_KEY_ISMYCOLLECT";
 
     public String reqKey = "1";
     public ZPageLoadCallback callBack;
 
     public boolean showBanner = false;
     private com.youth.banner.Banner banner;
-    public HomeListAdapter mAdapter;
+    public FBFLListAdapter mAdapter;
 
     public CallBackListener callBackListener;
     public CallBackListener getCallBackListener() {
         return callBackListener;
     }
+    public boolean isMyCollect = false;
     Rect rc = new Rect();
 
-    public FragCpItemList() {
+    public FragFLItemList() {
         super();
     }
 
@@ -74,7 +87,9 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
     @Override
     public void initView() {
         Log.i("TAG", "initView: xxxxxxxxxxx 2");
-        mAdapter = new HomeListAdapter(mContext);
+        if(getArguments() != null)
+            isMyCollect = getArguments().getBoolean(ARG_KEY_ISMYCOLLECT, false);
+        mAdapter = new FBFLListAdapter(mContext);
         mAdapter.addHeaderView(initBanner());
         mAdapter.setOnItemClickListener(this);
 
@@ -93,6 +108,7 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
                 mAdapter.resetParallaxImgView(rc);
             }
         });
+
         binding.recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -103,6 +119,31 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
 
         setShowBanner(showBanner);
         initCallback();
+
+        if(isMyCollect){
+            setTitle("我的优惠券");
+            Button detail_one_key_btn = binding.getRoot().findViewById(R.id.detail_one_key_btn);
+            detail_one_key_btn.setVisibility(isMyCollect ? View.VISIBLE : View.GONE);
+            detail_one_key_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    detail_one_key_btn
+                    if(mAdapter.getData().size() <= 0){
+                        ToastUtil.toast("请先抢劵后再兑换!");
+                        return;
+                    }
+
+                    try {
+                        String qqUrl = String.format(Constant.qqUrl, CustomerServiceActivity.qq);
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(qqUrl)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        ToastUtil.toast("您未安装QQ,可去应用市场下载安装");
+                    }
+                }
+            });
+            loadData();
+        }
 //        loadData();
     }
 
@@ -121,34 +162,7 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
     }
 
     private void initCallback() {
-//        callBack = new ZPageLoadCallback<ZResponse<List<Football>>>(mAdapter,binding.recyclerView) {
-//            @Override
-//            public void requestAction(int page, int pageSize) {
-//                RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(Integer.parseInt(reqKey), page, pageSize),callBack);
-//            }
-//
-//            @Override
-//            protected void onSuccess(ZResponse<List<Football>> data) {
-//                super.onSuccess(data);
-//            }
-//        };
-
-//        callBack=new ZPageLoadCallback<ZResponse<List<Football>>>(mAdapter,binding.recyclerView) {
-//            @Override
-//            public void requestAction(int page, int pageSize) {
-//                callBack.setCachKey("ChanneHomeFragment" + reqKey+page);
-//                RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(reqKey, page, pageSize),callBack);
-//            }
-//
-//            @Override
-//            protected void onSuccess(ZResponse<List<Football>> data) {
-//                super.onSuccess(data);
-//                isFirst = false;
-//            }
-//        };
-
         callBack = new ZPageLoadCallback<ZResponse<List<Football>>>(mAdapter, binding.recyclerView, this) {
-
             @Override
             public void requestAction(int page, int pageSize) {
 //                ZClient.getService(CPServer.class).cpList(page, pageSize, "cp", reqKey).enqueue(this);
@@ -158,7 +172,11 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
 //                        page++;
 //                }
                 callBack.setCachKey("homepage_fcil_key" + reqKey+page);
-                RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(Integer.parseInt(reqKey), page, pageSize),callBack);
+                if(isMyCollect) {
+                    ZClient.getService(SportService.class).getSetBuyList(Integer.parseInt(reqKey), page, pageSize).enqueue(callBack);
+                }else{
+                    RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(Integer.parseInt(reqKey), page, pageSize),callBack);
+                }
 //                RequestUtil.cacheUpdate(ZClient.getService(SportService.class).getNewsSpotrList(Integer.parseInt(reqKey), page, pageSize),callBack);
                 if(callBackListener != null)
                     callBackListener.onStart();
@@ -177,6 +195,14 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
             }
         };
         callBack.initSwipeRefreshLayout(binding.swipeRefreshLayout);
+        if(isMyCollect){
+            ZClient.getService(ZService.class).getCustomerServiceAccount().enqueue(new ZCallback<ZResponse<QQWechatBean>>() {
+                @Override
+                public void onSuccess(ZResponse<QQWechatBean> data) {
+                    CustomerServiceActivity.qq = data.getData().getQq();
+                }
+            });
+        }
     }
 
     private View initBanner() {
@@ -241,16 +267,22 @@ public class FragCpItemList extends HandleFragment<FragmentCategoryDetailBinding
         if (position > adapter.getData().size())
             return;
 
-        Object o = adapter.getData().get(position);
-        if (o instanceof Football) {
-            Football pd = (Football) o;
-            if (pd.getId() != 0) {
-//                Intent pdAct = new Intent(getActivity(), FootNewsPostActivity.class);
-//                pdAct.putExtra(FootNewsPostActivity.EXTRA_KEY_POSTID, pd.getId());
-//                startActivity(pdAct);
-                Intent pdAct = new Intent(getActivity(), SimpleWebCommentActivity.class);
-                pdAct.putExtra("id", pd.getId());
-                startActivity(pdAct);
+        if(isMyCollect)
+        {
+            startActivity(new Intent(mContext, SimpleWebCommentActivity.class).putExtra("id", mAdapter.getItem(position).getId()));
+        }else{
+            Object o = adapter.getData().get(position);
+            if(o instanceof Football){
+                Football pd = (Football) o;
+                if (pd.getId() != 0) {
+                    Intent pdAct = new Intent(getActivity(), OneFragActivity.class);
+                    pdAct.putExtra(OneFragActivity.EXTRA_KEY_FRAG_CLASS, FragFLItemDetail.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(FragFLItemDetail.ARG_BUNDLE_KEY_FLITEM, pd);
+                    pdAct.putExtra(OneFragActivity.EXTRA_KEY_FRAG_BUNDLE, bundle);
+                    startActivity(pdAct);
+                }
             }
         }
     }

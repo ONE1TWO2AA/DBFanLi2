@@ -1,5 +1,6 @@
 package com.miracle.sport.onetwo.act;
 
+import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +18,8 @@ import java.util.List;
 
 public class OneFragActivity extends BaseActivity<ActivityOneFragLayoutBinding> {
     public static String EXTRA_KEY_FRAG_CLASS = "EXTRA_KEY_FRAG_CLASS";
+    public static String EXTRA_KEY_FRAG_BUNDLE = "EXTRA_KEY_FRAG_BUNDLE";
+
     public static String EXTRA_KEY_SEARCH = "EXTRA_KEY_SEARCH";
     public static String EXTRA_KEY_ACT_TITLE = "EXTRA_KEY_ACT_TITLE";
     public static String EXTRA_KEY_MSG = "EXTRA_KEY_MSG";
@@ -27,6 +30,7 @@ public class OneFragActivity extends BaseActivity<ActivityOneFragLayoutBinding> 
     Message message;
     List<Message> msgs;
     String title;
+    Bundle bundle;
 
     public static interface OneFragCallBack extends Serializable {
         public void onFragPreInit();
@@ -68,6 +72,9 @@ public class OneFragActivity extends BaseActivity<ActivityOneFragLayoutBinding> 
             {
                 title = getIntent().getStringExtra(EXTRA_KEY_ACT_TITLE);
             }
+            if(getIntent().getExtras().containsKey(EXTRA_KEY_FRAG_BUNDLE)){
+                bundle = getIntent().getBundleExtra(EXTRA_KEY_FRAG_BUNDLE);
+            }
 
 
             if(getIntent().getExtras().containsKey(EXTRA_KEY_FRAG_CLASS)) {
@@ -75,6 +82,8 @@ public class OneFragActivity extends BaseActivity<ActivityOneFragLayoutBinding> 
                     fragment = (BaseFragment) ((Class)getIntent().getSerializableExtra(EXTRA_KEY_FRAG_CLASS)).newInstance();
                     fragment.showTitle();
                     fragment.setShowTitleBack(true);
+                    if(bundle != null)
+                        fragment.setArguments(bundle);
                     if(!TextUtils.isEmpty(title))
                         fragment.setTitle(title);
                 } catch (Exception e) {

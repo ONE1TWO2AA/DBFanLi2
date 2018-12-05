@@ -18,7 +18,7 @@ import com.miracle.base.util.ToastUtil;
 import com.miracle.databinding.ActivityCustomerServiceBinding;
 
 public class CustomerServiceActivity extends BaseActivity<ActivityCustomerServiceBinding> {
-    private String qq = "800859225";
+    public static String qq = "800859225";
     private String wechat = "Summer_JH5";
 
     @Override

@@ -3,18 +3,29 @@ package com.miracle.sport.onetwo.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.TimeUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class RandUtils {
     public static long FIXED_RAN_SEED = 589348934L;
     public static Random fixedRan = new Random(FIXED_RAN_SEED);
     public static Random random = new Random();
     public static Random hourRandom;
+    public static Random dayRandom;
+
+    public static Random getDayRand(){
+        if(dayRandom == null)
+            dayRandom = new Random(System.currentTimeMillis() / (1 * 24 * 60 * 60 * 1000));
+        dayRandom.setSeed(System.currentTimeMillis() / (1 * 24 * 60 * 60 * 1000));
+        return dayRandom;
+    }
 
     public static void initFixedRan(long seed){
         RandUtils.FIXED_RAN_SEED = seed;

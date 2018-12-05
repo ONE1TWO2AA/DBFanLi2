@@ -3,6 +3,7 @@ package com.miracle.sport.me.fragment;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +33,9 @@ import com.miracle.sport.me.activity.DDZMyCircleActivity;
 import com.miracle.sport.me.activity.DDZMyPostActivity;
 import com.miracle.sport.me.activity.DDZMyReplyActivity;
 import com.miracle.sport.me.activity.MyCollectionsActivity;
+import com.miracle.sport.onetwo.act.OneFragActivity;
+import com.miracle.sport.onetwo.frag.FragFLItemDetail;
+import com.miracle.sport.onetwo.frag.FragFLItemList;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wx.goodview.GoodView;
@@ -156,7 +160,7 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
         });
         binding.getRoot().findViewById(R.id.appUpdate).setOnClickListener(this);
         binding.getRoot().findViewById(R.id.ibClearCache).setOnClickListener(this);
-
+        binding.getRoot().findViewById(R.id.ibmyyhj).setOnClickListener(this);
     }
 
     @Override
@@ -250,6 +254,14 @@ public class MeFragment extends BaseFragment<F4Ddz2Binding> {
                 dialogProgress.setMessage("检查中...");
                 dialogProgress.show();
                 handler.sendEmptyMessageDelayed(1, 1000);
+                break;
+            case R.id.ibmyyhj:
+                Intent mCollectionIntent = new Intent(mContext, OneFragActivity.class);
+                mCollectionIntent.putExtra(OneFragActivity.EXTRA_KEY_FRAG_CLASS ,FragFLItemList.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(FragFLItemList.ARG_KEY_ISMYCOLLECT, true);
+                mCollectionIntent.putExtra(OneFragActivity.EXTRA_KEY_FRAG_BUNDLE, bundle);
+                startActivity(mCollectionIntent);
                 break;
 
         }

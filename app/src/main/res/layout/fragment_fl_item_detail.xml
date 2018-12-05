@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <!--<android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e02e24"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:background="@drawable/fl_header_bg"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/fl_detail_margin_lr"
+            android:layout_marginRight="@dimen/fl_detail_margin_lr"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/fl_item_sub_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123"
+                android:textSize="57sp"
+                android:textColor="#ff7400"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:background="#58595b"
+                    android:layout_width="38dp"
+                    android:layout_height="1px"/>
+                <TextView
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginRight="11dp"
+                    android:layout_weight="1"
+                    android:id="@+id/fl_item_sub_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="2018.11.11 - 2018.11.11"
+                    android:textColor="#58595b"
+                    android:textSize="12sp"
+                     />
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:background="#58595b"
+                    android:layout_width="38dp"
+                    android:layout_height="1px"></View>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--<com.miracle.michael.naoh.common.view.CircleImageView-->
+            <LinearLayout
+                android:id="@+id/fl_detail_text_content"
+                android:paddingBottom="4dp"
+                android:background="#fff"
+                android:paddingTop="4dp"
+                android:layout_marginLeft="@dimen/fl_detail_margin_lr"
+                android:layout_marginRight="@dimen/fl_detail_margin_lr"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+
+                <com.miracle.sport.onetwo.view.MImgView
+                    android:id="@+id/iv1_1"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:paddingLeft="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:paddingRight="2dp"
+                        android:text="官方：前国足新闻官付强离开华夏幸福公司"
+                        android:textColor="@color/main_text_color"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="现价"
+                            android:textColor="#58595b"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/fl_item_org_price"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="￥123"
+                            android:textColor="#58595b"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="劵后价"
+                            android:textColor="#000"
+                            android:textSize="14sp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:background="@drawable/fl_detail_jhj"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/fl_item_now_price"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="8dp"
+                            android:text="￥123"
+                            android:textColor="#e02e24"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fl_item_people"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已经拼34343件"
+                        android:textColor="#7f7f7f"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                app:cardElevation="4dp"
+                app:cardMaxElevation="4dp"
+                app:contentPadding="2dp"
+                app:cardBackgroundColor="#fafafa"
+                app:cardCornerRadius="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp">
+
+                    <LinearLayout
+                        android:id="@+id/other_ll"
+                        android:paddingLeft="4dp"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.miracle.base.view.ItemBar
+                            android:paddingRight="8dp"
+                            android:id="@+id/other_qcby"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            app:ItemBar_Left_Icon="@string/icon_main_right"
+                            app:ItemBar_Left_TextColor="#f00"
+                            app:ItemBar_Background="@color/transparent"
+                            app:ItemBar_TextColor="#58595b"
+                            app:ItemBar_Left_TextSize="14sp"
+                            android:textSize="14sp"
+                            app:ItemBar_RightVisibility="gone"
+                            app:ItemBar_Text="全场包邮" />
+
+                        <com.miracle.base.view.ItemBar
+                            android:paddingRight="8dp"
+                            android:id="@+id/other_qtth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            app:ItemBar_Left_Icon="@string/icon_main_right"
+                            app:ItemBar_Left_TextColor="#f00"
+                            app:ItemBar_TextColor="#58595b"
+                            app:ItemBar_Left_TextSize="14sp"
+                            android:textSize="14sp"
+                            app:ItemBar_Background="@color/transparent"
+                            app:ItemBar_RightVisibility="gone"
+                            app:ItemBar_Text="7天退换" />
+
+                        <com.miracle.base.view.ItemBar
+                            android:paddingRight="8dp"
+                            android:id="@+id/other_sbxsfh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            app:ItemBar_Left_Icon="@string/icon_main_right"
+                            app:ItemBar_Left_TextColor="#f00"
+                            app:ItemBar_TextColor="#58595b"
+                            app:ItemBar_Background="@color/transparent"
+                            app:ItemBar_Left_TextSize="14sp"
+                            android:textSize="14sp"
+                            app:ItemBar_RightVisibility="gone"
+                            app:ItemBar_Text="48小时发货" />
+
+                        <com.miracle.base.view.ItemBar
+                            android:paddingRight="8dp"
+                            android:id="@+id/other_jypy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            app:ItemBar_Background="@color/transparent"
+                            app:ItemBar_Left_Icon="@string/icon_main_right"
+                            app:ItemBar_Left_TextColor="#f00"
+                            app:ItemBar_TextColor="#58595b"
+                            app:ItemBar_Left_TextSize="14sp"
+                            android:textSize="14sp"
+                            app:ItemBar_RightVisibility="gone"
+                            app:ItemBar_Text="假一赔一" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.miracle.sport.onetwo.view.MImgView
+                    android:id="@+id/iv1_2"
+                    android:layout_width="0dp"
+                    android:layout_height="106dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+
+                <com.miracle.sport.onetwo.view.MImgView
+                    android:id="@+id/iv2_2"
+                    android:layout_width="0dp"
+                    android:layout_height="106dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.miracle.sport.onetwo.view.MImgView
+                    android:id="@+id/iv1"
+                    android:layout_width="0dp"
+                    android:layout_height="76dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+
+                <com.miracle.sport.onetwo.view.MImgView
+                    android:id="@+id/iv2"
+                    android:layout_width="0dp"
+                    android:layout_height="76dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+
+                <com.miracle.sport.onetwo.view.MImgView
+                    android:id="@+id/iv3"
+                    android:layout_width="0dp"
+                    android:layout_height="76dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingTop="16dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/fl_item_detail_btn1"
+                android:text="一键抢劵"
+                style="@style/btn_one_key_force" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|left"
+                    android:paddingLeft="1dp"
+                    android:textColor="@color/red_ball"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|left"
+                    android:paddingLeft="5dp"
+                    android:text=""
+                    android:textColor="@color/m999999"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/im_comment_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/message_open"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="16dp"
+                    android:text="6"
+                    android:textColor="@color/m666666" />
+
+                <TextView
+                    android:id="@+id/im_click_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/good"
+                    android:drawablePadding="5dp"
+                    android:text="600"
+                    android:textColor="@color/m666666" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

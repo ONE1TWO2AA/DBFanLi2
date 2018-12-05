@@ -89,7 +89,8 @@ public abstract class ZPageLoadCallback<T> extends ZCallback<T> implements Swipe
                 mAdapter.loadMoreEnd();
             } else {
                 mAdapter.setNewData(null);
-                mNetStatusUI.showEmpty();
+                if(mNetStatusUI != null)
+                    mNetStatusUI.showEmpty();
             }
         }
     }
@@ -114,7 +115,8 @@ public abstract class ZPageLoadCallback<T> extends ZCallback<T> implements Swipe
                 mAdapter.loadMoreEnd();
             } else {
                 mAdapter.setNewData(null);
-                mNetStatusUI.showEmpty();
+                if(mNetStatusUI != null)
+                    mNetStatusUI.showEmpty();
             }
         }
 

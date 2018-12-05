@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.miracle.sport.onetwo.view.MArcMenu
+            android:id="@+id/marcm1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.miracle.sport.onetwo.view.MArcMenu>
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_margin="70dp"
+            android:background="@mipmap/alogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <FrameLayout
+            android:id="@+id/fl1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </FrameLayout>
+</layout>

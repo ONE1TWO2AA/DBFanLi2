@@ -48,8 +48,8 @@
     <color name="recall_black_38">#89ffffff</color>
     <color name="recall_white_54">#89ffffff</color>
 
-    <color name="main_color">#00CC00</color>
-    <color name="main_color_trans1">#8000CC00</color>
+    <color name="main_color">#ff581e</color>
+    <color name="main_color_trans1">#80ff581e</color>
     <color name="main_color_end">#dd3286E4</color>
     <color name="main_color_half">#88705DE8</color>
     <color name="titlebar_color">#E6E6FA</color>

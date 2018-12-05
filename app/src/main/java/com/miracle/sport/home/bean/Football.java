@@ -1,6 +1,9 @@
 package com.miracle.sport.home.bean;
 
-public class Football {
+import java.io.Serializable;
+import java.util.List;
+
+public class Football implements Serializable {
 
 
     /**
@@ -32,7 +35,24 @@ public class Football {
     private int click_num;
     private int comment_num;
     private String add_time;
+    private int coupon;
+    private int click;
 
+    public int getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(int coupon) {
+        this.coupon = coupon;
+    }
+
+    public int getClick() {
+        return click;
+    }
+
+    public void setClick(int click) {
+        this.click = click;
+    }
 
     public int getId() {
         return id;

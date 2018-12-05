@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +13,10 @@ import android.widget.ImageView;
 import com.gongwen.marqueen.SimpleMF;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cache.CacheMode;
-import com.lzy.okgo.model.Response;
 import com.miracle.R;
 import com.miracle.base.AppConfig;
 import com.miracle.base.BaseFragment;
 import com.miracle.base.Constant;
-import com.miracle.base.http.CacheConstant;
-import com.miracle.base.http.Common.EncryptCallback;
-import com.miracle.base.http.model.bean.PageResultForJob;
 import com.miracle.base.network.GlideApp;
 import com.miracle.base.network.RequestUtil;
 import com.miracle.base.network.ZCallback;
@@ -33,12 +25,8 @@ import com.miracle.base.network.ZResponse;
 import com.miracle.base.switcher.GameActivity;
 import com.miracle.base.util.CommonUtils;
 import com.miracle.base.util.ContextHolder;
-import com.miracle.base.util.ToastUtil;
 import com.miracle.databinding.FragmentHomeBinding;
 import com.miracle.sport.SportService;
-import com.miracle.sport.common.constant.CacheContents;
-import com.miracle.sport.common.constant.UrlConstants;
-import com.miracle.sport.home.ServiceHome;
 import com.miracle.sport.home.adapter.ChannelPagerAdapter;
 import com.miracle.sport.home.bean.Channel;
 import com.miracle.sport.home.bean.ChannerlKey;
@@ -51,10 +39,7 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-
-import retrofit2.Call;
 
 
 
@@ -88,12 +73,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
         initMard(textList);
 //        initChannelData();
 //        initChannelFragments();
-
     }
 
     private void initBanner() {
         images = new ArrayList<>();
         images.add("file:///android_asset/mainpage/04.png");
+        images.add("file:///android_asset/mainpage/03.png");
         images.add("file:///android_asset/mainpage/05.png");
 //        images.add("file:///android_asset/lottery/banner06.png");
 //        images.add("file:///android_asset/lottery/banner07.png");
@@ -328,7 +313,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
 //        mChannelCodes = m;
 //        for (Channel channel : mSelectedChannels) {
         for (int i=0; i<mSelectedChannels.size();i++) {
-            if(0==i){
+            if(0==i) continue;
                 ChannelHomeFristFragment newsFragment = new ChannelHomeFristFragment();
                 Bundle bundle = new Bundle();
 //            bundle.putString(Constant.CHANNEL_CODE, channel.id);
@@ -336,15 +321,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
 //            bundle.putBoolean(Constant.IS_VIDEO_LIST, channel.id.equals(mChannelCodes[1]));//是否是视频列表页面,根据判断频道号是否是视频
                 newsFragment.setArguments(bundle);
                 mChannelFragments.add(newsFragment);//添加到集合中
-            }else{
-                ChannelHomeFragment newsFragment  = new ChannelHomeFragment();
-                Bundle bundle = new Bundle();
-//            bundle.putString(Constant.CHANNEL_CODE, channel.id);
-                bundle.putString(Constant.CHANNEL_CODE, mSelectedChannels.get(i).id);
-//            bundle.putBoolean(Constant.IS_VIDEO_LIST, channel.id.equals(mChannelCodes[1]));//是否是视频列表页面,根据判断频道号是否是视频
-                newsFragment.setArguments(bundle);
-                mChannelFragments.add(newsFragment);//添加到集合中
-            }
+//            }else{
+//                ChannelHomeFragment newsFragment  = new ChannelHomeFragment();
+//                Bundle bundle = new Bundle();
+////            bundle.putString(Constant.CHANNEL_CODE, channel.id);
+//                bundle.putString(Constant.CHANNEL_CODE, mSelectedChannels.get(i).id);
+////            bundle.putBoolean(Constant.IS_VIDEO_LIST, channel.id.equals(mChannelCodes[1]));//是否是视频列表页面,根据判断频道号是否是视频
+//                newsFragment.setArguments(bundle);
+//                mChannelFragments.add(newsFragment);//添加到集合中
+//            }
 
         }
     }

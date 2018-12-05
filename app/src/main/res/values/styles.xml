@@ -104,4 +104,14 @@
     <style name="club_post_head_jf_txt" parent="clube_post_title_tv">
     </style>
 
+    <style name="btn_one_key_force">
+        <item name="android:background">@drawable/btn_round_selector</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#e02e24</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
 </resources>
